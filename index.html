@@ -2,10 +2,389 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Flux Studio AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flux Studio AI | Automatisation & IA sur mesure</title>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts — Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles personnalisés -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>Thomas Finkelstein - Flux Studio AI</h1>
-    <p>Expert en programmation et automatisations aux Cluses.</p>
+
+    <!-- ================================================================
+         HERO SECTION
+         Fond navy + mesh gradient animé
+         Layout : texte gauche / iPhone flottant droite
+         Pas de navbar. Logo grand top-left.
+         ================================================================ -->
+    <section class="hero px-6" id="hero">
+
+        <!-- ── Navbar fixée : logo gauche + langue droite ── -->
+        <nav class="hero-nav">
+            <div class="hero-brand">
+                <div class="hero-brand-icon-wrap">
+                    <img src="assets/img/logo.jpg" alt="Icône Flux Studio AI" class="hero-brand-icon">
+                </div>
+                <div class="hero-brand-wordmark">
+                    <span class="hero-brand-flux">Flux Studio</span>
+                    <span class="hero-brand-ai">AI</span>
+                </div>
+            </div>
+            <div class="lang-switcher">
+                <button class="lang-btn is-active" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+            </div>
+        </nav>
+
+        <!-- ── Layout Hero : texte + phone ── -->
+        <!-- Correction 1 : max-w-5xl + gap réduit pour bloc central uni -->
+        <div class="relative z-5 w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10 pt-32 md:pt-20">
+
+            <!-- === COLONNE GAUCHE : Texte === -->
+            <div class="hero-text text-center md:text-left order-2 md:order-1">
+
+                <!-- Pastille statut -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.06] backdrop-blur-sm mb-8">
+                    <span class="pulse-dot w-[6px] h-[6px] rounded-full flex-shrink-0" style="background:var(--color-accent);"></span>
+                    <span class="text-[11px] font-medium text-white/50 tracking-wide" data-i18n="heroStatus">
+                        Systèmes actifs — Automatisations en cours
+                    </span>
+                </div>
+
+                <!-- Titre -->
+                <!-- Correction 2 : titre agrandi text-6xl / text-7xl desktop -->
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-5">
+                    <span data-i18n="heroTitle1">L'IA travaille.</span><br>
+                    <span class="font-light text-[#5eead4]" data-i18n="heroTitle2">Vous développez.</span>
+                </h1>
+
+                <!-- Accroche -->
+                <p class="text-[14px] md:text-[15px] text-white/45 font-light max-w-sm leading-relaxed mb-10" data-i18n="heroSubtitle">
+                    Solutions d'automatisation sur mesure pour particuliers ou professionnels.
+                </p>
+
+                <!-- Flèche scroll -->
+                <div class="flex justify-center md:justify-start">
+                    <svg class="scroll-arrow text-white/30" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                        <path d="M11 4v14M11 18l-5-5M11 18l5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- === COLONNE DROITE : iPad flottant === -->
+            <div class="ipad-scene order-1 md:order-2" id="deviceScene">
+                <div class="ipad-levitate">
+                    <div class="ipad-body" id="deviceBody">
+
+                        <!-- Caméra frontale -->
+                        <div class="ipad-camera"></div>
+
+                        <!-- Boutons physiques -->
+                        <div class="ipad-btn-power"></div>
+                        <div class="ipad-btn-vol-up"></div>
+                        <div class="ipad-btn-vol-down"></div>
+
+                        <!-- Écran — flex column -->
+                        <div class="ipad-screen">
+
+                            <!-- Barre statut iOS -->
+                            <div class="ipad-statusbar">
+                                <span>9:41</span>
+                                <span style="letter-spacing:0.5px;">●●●●○</span>
+                            </div>
+
+                            <!-- En-tête app -->
+                            <div class="ipad-app-header">
+                                <p class="ipad-app-title" data-i18n="aiWindowLabel">flux-agent · actif</p>
+                                <p class="ipad-app-subtitle">
+                                    <span class="pulse-dot inline-block w-[5px] h-[5px] rounded-full" style="background:var(--color-accent);"></span>
+                                    <span data-i18n="heroStatus" class="text-[9px]">Systèmes actifs</span>
+                                </p>
+                            </div>
+
+                            <!-- ── Zone crossfade des 3 états ── -->
+                            <div class="ai-states-wrap" id="aiStates">
+
+                                <!-- ╔══════════════════════════════╗
+                                     ║  ÉTAT 1 — Chat iMessage      ║
+                                     ║  Immobilier                  ║
+                                     ╚══════════════════════════════╝ -->
+                                <div class="ai-state is-active" data-color="#14b8a6">
+                                    <div class="chat-wrap">
+
+                                        <!-- Barre contact -->
+                                        <div class="chat-bar">
+                                            <div class="chat-avatar">M</div>
+                                            <div class="chat-info">
+                                                <p class="chat-name">Marc Dupont</p>
+                                                <p class="chat-online" data-i18n="chatOnline">● En ligne</p>
+                                            </div>
+                                            <span class="chat-sector-badge" data-i18n="cardImmoBadge">Immobilier</span>
+                                        </div>
+
+                                        <!-- Messages -->
+                                        <div class="chat-messages">
+
+                                            <!-- Typing indicator (3 points) -->
+                                            <div class="typing-bubble" aria-hidden="true">
+                                                <span class="dot"></span>
+                                                <span class="dot"></span>
+                                                <span class="dot"></span>
+                                            </div>
+
+                                            <!-- Message entrant (IA) -->
+                                            <div class="msg-bubble msg-in">
+                                                <strong data-i18n="state1Line1">Résumé Prospect :</strong><br>
+                                                <span data-i18n="state1Line2">Budget 450k€ validé.</span>
+                                                <span style="color:var(--color-immo);"> ✓</span><br>
+                                                <span data-i18n="state1Line3">Critère :</span> <strong data-i18n="state1Line4">Cuisine ouverte.</strong>
+                                            </div>
+
+                                            <!-- Réponse sortante (utilisateur) -->
+                                            <div class="msg-bubble msg-out">
+                                                <span data-i18n="chatReply">Merci, je prépare la visite.</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ╔══════════════════════════════╗
+                                     ║  ÉTAT 2 — Contrat + SVG sig  ║
+                                     ║  Gîtes & Location            ║
+                                     ╚══════════════════════════════╝ -->
+                                <div class="ai-state" data-color="#06b6d4">
+                                    <div class="contract-wrap">
+
+                                        <!-- En-tête du document -->
+                                        <div class="contract-doc-header">
+                                            <div class="contract-doc-icon">📋</div>
+                                            <p class="contract-doc-title" data-i18n="contractTitle">Contrat de Location</p>
+                                            <span class="contract-sector-badge" data-i18n="gitesLabel">Gîtes & Location</span>
+                                        </div>
+
+                                        <!-- Champs qui se remplissent automatiquement -->
+                                        <div class="contract-fields">
+                                            <div class="field-row">
+                                                <span class="field-label" data-i18n="fieldTenant">Locataire</span>
+                                                <span class="field-value">Marie Dupont</span>
+                                            </div>
+                                            <div class="field-row">
+                                                <span class="field-label" data-i18n="fieldDates">Période</span>
+                                                <span class="field-value">12/07 → 19/07</span>
+                                            </div>
+                                            <div class="field-row">
+                                                <span class="field-label" data-i18n="fieldAmount">Montant</span>
+                                                <span class="field-value">890 €</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Signature SVG animée -->
+                                        <div class="contract-sig-area">
+                                            <div class="sig-col">
+                                                <span class="sig-label" data-i18n="sigLabel">Signature</span>
+                                                <svg class="sig-svg" viewBox="0 0 130 40" aria-hidden="true">
+                                                    <path class="sig-path"
+                                                        d="M 8,32 C 16,14 24,36 36,22 C 46,10 52,30 62,18 C 70,8 78,30 90,20 C 99,12 106,28 118,18 C 122,15 126,20 129,17"/>
+                                                </svg>
+                                            </div>
+                                            <span class="sig-badge" data-i18n="state2Badge">✓ Caution bloquée</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- ╔══════════════════════════════╗
+                                     ║  ÉTAT 3 — Tableur Excel      ║
+                                     ║  Finance                     ║
+                                     ╚══════════════════════════════╝ -->
+                                <div class="ai-state" data-color="#8b5cf6">
+                                    <div class="sheet-wrap">
+
+                                        <!-- Notification PDF -->
+                                        <div class="sheet-notif">
+                                            <span class="sheet-notif-icon">📄</span>
+                                            <span data-i18n="sheetNotif">Facture_Orange.pdf détectée</span>
+                                            <span class="sheet-finance-badge" data-i18n="cardFinanceBadge">Finance</span>
+                                        </div>
+
+                                        <!-- Tableur -->
+                                        <div class="sheet-area">
+                                            <table class="sheet-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th data-i18n="sheetDate">Date</th>
+                                                        <th data-i18n="sheetSupplier">Fournisseur</th>
+                                                        <th data-i18n="sheetAmount">Montant HT</th>
+                                                        <th data-i18n="sheetVat">TVA</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Ligne fantôme déjà présente -->
+                                                    <tr class="sheet-row-ghost">
+                                                        <td>12/01/25</td>
+                                                        <td>EDF</td>
+                                                        <td>89,00 €</td>
+                                                        <td>17,80 €</td>
+                                                    </tr>
+                                                    <!-- Nouvelle ligne extraite par l'IA -->
+                                                    <tr class="sheet-row-new">
+                                                        <td class="cell-d1">15/01/25</td>
+                                                        <td class="cell-d2">Orange</td>
+                                                        <td class="cell-d3">142,50 €</td>
+                                                        <td class="cell-d4">28,50 €</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Fin crossfade -->
+
+                            <!-- Barre de progression -->
+                            <div class="ai-footer">
+                                <div class="progress-track">
+                                    <div class="progress-fill" id="progressFill" style="background:var(--color-immo);"></div>
+                                </div>
+                                <span class="ai-label" id="aiCounter">01 / 03</span>
+                            </div>
+
+                            <!-- Indicateur home (barre bas) -->
+                            <div class="ipad-home"></div>
+
+                        </div>
+                        <!-- Fin écran -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- Fin iPad -->
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================================
+         BENTO GRID — Design premium
+         ================================================================ -->
+    <main class="max-w-6xl mx-auto px-6 py-28" id="services">
+
+        <!-- Titre de section -->
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4" data-i18n="sectionTitle">
+                L'invisible qui fait la différence.
+            </h2>
+            <p class="text-[var(--color-text-muted)] font-light max-w-xl mx-auto text-[15px] leading-relaxed" data-i18n="sectionSubtitle">
+                Des processus sur mesure qui tournent silencieusement en arrière-plan, 24h/24.
+            </p>
+        </div>
+
+        <!-- Grille asymétrique — 3 cartes -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- ── Carte 1 : Bénéfice majeur (2/3) ── -->
+            <div class="card col-span-1 md:col-span-2 p-10 flex flex-col justify-between" style="min-height:320px;">
+                <div>
+                    <span class="badge text-[var(--color-accent)]" style="background:var(--color-accent-light);" data-i18n="card1Badge">Bénéfice</span>
+                    <h3 class="text-2xl md:text-3xl font-bold tracking-tight leading-snug mt-5" data-i18n="card1Title">
+                        Des centaines d'heures libérées.
+                    </h3>
+                </div>
+                <p class="text-[var(--color-text-muted)] font-light text-[14px] leading-relaxed mt-8" data-i18n="card1Desc">
+                    Ne gaspillez plus votre énergie sur des tâches répétitives ou de la saisie manuelle. L'intelligence artificielle gère vos flux d'informations instantanément, vous permettant de vous concentrer sur ce qui a vraiment de la valeur : vos clients et votre développement.
+                </p>
+            </div>
+
+            <!-- ── Carte 2 : Fiabilité (1/3 sombre) ── -->
+            <div class="card card-dark p-10 flex flex-col justify-between" style="min-height:320px;">
+                <!-- Grand ✓ décoratif -->
+                <div class="text-6xl font-bold select-none leading-none" style="color:var(--color-accent);" aria-hidden="true">✓</div>
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold leading-snug" data-i18n="card2Title">
+                        Zéro erreur. Une précision absolue.
+                    </h3>
+                    <p class="text-[#8a9ab0] font-light text-[14px] leading-relaxed mt-5" data-i18n="card2Desc">
+                        Une facture complexe ? Un contrat de location avec des dizaines de variables ? L'IA ne connaît ni la fatigue ni les oublis. Chaque donnée est extraite, vérifiée et transférée avec une rigueur mathématique, à toute heure du jour ou de la nuit.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ── Carte 3 : Intégration (pleine largeur) ── -->
+            <div class="card col-span-1 md:col-span-3 p-10" style="background:#f7f7f9;">
+                <!-- Texte -->
+                <div class="max-w-2xl mb-8">
+                    <span class="badge" style="color:var(--color-finance); background:rgba(139,92,246,0.10);" data-i18n="card3Badge">Intégration</span>
+                    <h3 class="text-2xl md:text-3xl font-bold tracking-tight leading-snug mt-5" data-i18n="card3Title">
+                        Connecté à vos outils actuels.
+                    </h3>
+                    <p class="text-[var(--color-text-muted)] font-light text-[14px] leading-relaxed mt-4" data-i18n="card3Desc">
+                        Pas de nouveaux logiciels complexes à apprendre ou à installer. Nous branchons notre intelligence artificielle directement dans les applications que vous utilisez déjà tous les jours, pour que tout communique de façon parfaitement invisible.
+                    </p>
+                </div>
+                <!-- Pilules outils -->
+                <div class="flex flex-wrap gap-2.5">
+                    <span class="tech-tag">WhatsApp</span>
+                    <span class="tech-tag">Gmail</span>
+                    <span class="tech-tag">Google Sheets</span>
+                    <span class="tech-tag">Airbnb</span>
+                    <span class="tech-tag">Excel</span>
+                    <span class="tech-tag">Stripe</span>
+                    <span class="tech-tag">Slack</span>
+                    <span class="tech-tag">Notion</span>
+                    <span class="tech-tag">Calendly</span>
+                    <span class="tech-tag">HubSpot</span>
+                    <span class="tech-tag">Dropbox</span>
+                    <span class="tech-tag">Trello</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CTA noir -->
+        <div class="text-center mt-24">
+            <p class="text-[var(--color-text-muted)] font-light text-sm mb-7" data-i18n="ctaLabel">
+                Prêt à libérer votre temps ?
+            </p>
+            <a href="mailto:contact@fluxstudio.ai" class="btn-primary">
+                <span data-i18n="ctaButton">Parlons de votre projet</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2 7h10M12 7L8.5 3.5M12 7L8.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+
+    </main>
+
+
+    <!-- ================================================================
+         FOOTER LÉGAL
+         ================================================================ -->
+    <footer class="bg-white border-t border-gray-100 py-12 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a0a0a8] mb-3">Flux Studio AI</p>
+            <div class="text-[11px] text-[#b0b0b8] leading-loose space-y-0.5">
+                <p data-i18n="footerEI">Entrepreneur Individuel : Thomas Olivier Sylvain Finkelstein</p>
+                <p data-i18n="footerSiret">SIRET : 101 660 249 00018  ·  Code APE : 62.01Z</p>
+                <p data-i18n="footerAddress">Siège social : Les Cluses (66480), France</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/app.js"></script>
+
 </body>
 </html>
