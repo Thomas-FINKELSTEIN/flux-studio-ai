@@ -58,6 +58,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    will-change: transform;
 }
 
 .lang-btn {
@@ -117,7 +118,7 @@ body {
     100% { transform: translate(2%, -1%) rotate(-0.5deg); }
 }
 
-/* ── Navbar fixée ── */
+/* ── Navbar fixée — opacité & slide pilotés par JS au scroll ── */
 .hero-nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -125,64 +126,56 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 40px;
-    background: rgba(11, 26, 46, 0.72);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(20, 184, 166, 0.08);
+    padding: 28px 40px;
+    background: transparent;
+    will-change: opacity;
 }
 
 .hero-brand {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 18px;
     white-space: nowrap;
     text-decoration: none;
-}
-
-.hero-brand-icon-wrap {
-    width: 42px; height: 42px;
-    border-radius: 11px;
-    background: #eaeaec;
-    overflow: hidden;
-    flex-shrink: 0;
-    box-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    will-change: transform;
 }
 
 .hero-brand-icon {
-    width: 100%; height: 100%;
+    width: 84px;
+    height: 84px;
+    border-radius: 20px;
     object-fit: cover;
     display: block;
+    flex-shrink: 0;
 }
 
 .hero-brand-wordmark {
     display: flex;
     align-items: baseline;
-    gap: 6px;
+    gap: 8px;
     line-height: 1;
 }
 
 .hero-brand-flux {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: 700;
     color: #ffffff;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
 }
 
 .hero-brand-ai {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: 700;
     color: var(--color-accent);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
 }
 
 @media (max-width: 640px) {
-    .hero-nav { padding: 12px 20px; }
-    .hero-brand-icon-wrap { width: 34px; height: 34px; border-radius: 9px; }
+    .hero-nav { padding: 16px 20px; }
+    .hero-brand-icon { width: 52px; height: 52px; border-radius: 13px; }
     .hero-brand-flux,
-    .hero-brand-ai { font-size: 16px; }
+    .hero-brand-ai { font-size: 24px; }
+    .hero-brand { gap: 12px; }
 }
 
 
@@ -868,13 +861,51 @@ body {
     50%       { opacity: 0.35; transform: scale(0.75); }
 }
 
-.scroll-arrow {
-    animation: drift 2.8s ease-in-out infinite;
+/* ── Tagline principale ── */
+.hero-pro-tag {
+    font-size: clamp(20px, 2.8vw, 30px);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.60);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 18px;
 }
 
-@keyframes drift {
-    0%, 100% { transform: translateY(0);   opacity: 0.35; }
-    50%       { transform: translateY(7px); opacity: 0.80; }
+/* ── Scroll hint animé ── */
+.scroll-hint {
+    margin-top: 4px;
+}
+
+.scroll-hint-text {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.28);
+}
+
+.scroll-hint-track {
+    width: 1px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+}
+
+.scroll-hint-bar {
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, transparent, var(--color-accent), transparent);
+    border-radius: 1px;
+    animation: scrollDrop 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes scrollDrop {
+    0%   { transform: translateY(-100%); opacity: 0;   }
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { transform: translateY(300%);  opacity: 0; }
 }
 
 
@@ -965,7 +996,341 @@ body {
 
 
 /* ============================================================
-   15. LÉVITATION (animation continue de l'iPad)
+   15. BOUTON DÉCLENCHEUR FOCUS
+   ============================================================ */
+
+@keyframes btnFloat {
+    0%, 100% { transform: translateY(0px);  }
+    50%       { transform: translateY(-8px); }
+}
+
+@keyframes btnRing {
+    0%   { box-shadow: 0 4px 20px rgba(20,184,166,0.10), 0 0 0 0   rgba(20,184,166,0.20); }
+    50%  { box-shadow: 0 8px 32px rgba(20,184,166,0.18), 0 0 0 10px rgba(20,184,166,0.00); }
+    100% { box-shadow: 0 4px 20px rgba(20,184,166,0.10), 0 0 0 0   rgba(20,184,166,0.20); }
+}
+
+.focus-trigger {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--color-accent);
+    border: 1.5px solid var(--color-accent);
+    padding: 32px 48px;
+    border-radius: 20px;
+    min-width: 260px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    animation:
+        btnFloat 3.2s ease-in-out infinite,
+        btnRing  3.2s ease-in-out infinite;
+    transition:
+        background 0.3s var(--ease-smooth),
+        color 0.3s var(--ease-smooth),
+        border-color 0.3s var(--ease-smooth);
+}
+
+.focus-trigger:hover {
+    background: var(--color-accent);
+    color: #ffffff;
+    border-color: var(--color-accent);
+    animation-play-state: paused;
+    box-shadow: 0 14px 36px rgba(20, 184, 166, 0.30);
+}
+
+.focus-trigger svg {
+    transition: transform 0.3s var(--ease-smooth);
+}
+
+.focus-trigger:hover svg {
+    transform: translateY(3px);
+}
+
+
+/* ============================================================
+   16. FOCUS OVERLAY — Light Glassmorphism
+   ============================================================ */
+.focus-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    /* Vitre claire — même teinte que le body avec flou puissant */
+    background: rgba(228, 230, 234, 0.88);
+    backdrop-filter: blur(32px) saturate(180%);
+    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.45s var(--ease-smooth), visibility 0.45s;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.focus-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ── Bouton Fermer flottant (sombre sur fond clair) ── */
+.magic-close {
+    position: fixed;
+    top: 24px; right: 28px;
+    z-index: 110;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(26, 35, 50, 0.08);
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s var(--ease-spring);
+}
+
+.magic-close:hover {
+    background: rgba(26, 35, 50, 0.14);
+    transform: scale(1.1) rotate(90deg);
+}
+
+/* ── Conteneur central ── */
+.magic-container {
+    max-width: 740px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 72px 24px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   17. SEGMENTED CONTROL — iOS Light Style
+   ============================================================ */
+.magic-tabs {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 4px;
+    border-radius: 14px;
+    /* Piste gris très clair, style iOS */
+    background: rgba(0, 0, 0, 0.06);
+    border: none;
+    margin-bottom: 44px;
+    flex-shrink: 0;
+}
+
+/* Bulle active blanche glissante */
+.magic-bubble {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    border-radius: 10px;
+    background: #ffffff;
+    border: none;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.10),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.magic-tab {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: rgba(26, 35, 50, 0.40);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.25s var(--ease-smooth);
+    white-space: nowrap;
+}
+
+.magic-tab:hover {
+    color: rgba(26, 35, 50, 0.70);
+}
+
+.magic-tab.is-active {
+    color: var(--color-text-primary); /* noir intense */
+}
+
+.magic-tab-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+@media (max-width: 700px) {
+    .magic-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 13px;
+    }
+    .magic-tab { font-size: 12px; padding: 8px 13px; }
+    .magic-tab-icon { font-size: 13px; }
+    .magic-container { padding: 64px 16px 40px; }
+}
+
+
+/* ============================================================
+   18. PANNEAUX DE CONTENU — Staggered Reveal + Bento Grid
+   ============================================================ */
+.magic-content {
+    width: 100%;
+    position: relative;
+}
+
+.magic-panel {
+    display: none;
+}
+
+.magic-panel.is-active {
+    display: block;
+}
+
+/* Titre du panneau */
+.magic-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+/* ── Grille Bento : carte 1 pleine largeur, 2+3 côte à côte ── */
+.magic-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* Première carte : pleine largeur */
+.magic-cards .magic-card:first-child {
+    grid-column: 1 / -1;
+}
+
+.magic-card {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    background: #ffffff;
+    border: none;
+    border-radius: 22px;
+    padding: 26px 26px;
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.05),
+        0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+}
+
+.magic-card:hover {
+    box-shadow:
+        0 12px 36px rgba(0, 0, 0, 0.09),
+        0 2px 8px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
+}
+
+.magic-card-icon {
+    width: 46px; height: 46px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.magic-card-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.magic-card-text h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 7px;
+    letter-spacing: -0.01em;
+}
+
+.magic-card-text p {
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    line-height: 1.65;
+}
+
+/* ── Disclaimer ── */
+.magic-disclaimer {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    opacity: 0.70;
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 8px;
+}
+
+/* ── Animation Staggered Reveal ── */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+.magic-panel.is-active .stagger-item {
+    animation: stagger-in 0.45s var(--ease-smooth) both;
+}
+
+.magic-panel.is-active .stagger-item:nth-child(1) { animation-delay: 0s; }
+.magic-panel.is-active .magic-cards .stagger-item:nth-child(1) { animation-delay: 0.07s; }
+.magic-panel.is-active .magic-cards .stagger-item:nth-child(2) { animation-delay: 0.15s; }
+.magic-panel.is-active .magic-cards .stagger-item:nth-child(3) { animation-delay: 0.23s; }
+.magic-panel.is-active .magic-disclaimer { animation: stagger-in 0.45s var(--ease-smooth) 0.34s both; }
+
+@keyframes stagger-in {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .magic-title { font-size: 21px; margin-bottom: 22px; }
+    /* Stack vertical sur mobile */
+    .magic-cards { grid-template-columns: 1fr; }
+    .magic-cards .magic-card:first-child { grid-column: 1; }
+    .magic-card { padding: 20px 18px; gap: 14px; border-radius: 18px; }
+    .magic-card-icon { width: 40px; height: 40px; border-radius: 11px; }
+    .magic-card-text h4 { font-size: 14px; }
+    .magic-card-text p { font-size: 13px; }
+    .magic-close { top: 16px; right: 16px; width: 38px; height: 38px; }
+    .magic-disclaimer { font-size: 11px; }
+}
+
+
+/* ============================================================
+   19. LÉVITATION (animation continue de l'iPad)
    ============================================================ */
 @keyframes levitate {
     0%, 100% { transform: translateY(0); }

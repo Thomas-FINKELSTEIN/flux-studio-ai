@@ -72,8 +72,8 @@
           de se jouer complètement avant le prochain état.
        ────────────────────────────────────────────────────────── */
 
-    var DISPLAY_MS  = 6500;
-    var PROGRESS_MS = 6000;
+    var DISPLAY_MS  = 3000;
+    var PROGRESS_MS = 2500;
 
     var states       = Array.from(document.querySelectorAll('#aiStates .ai-state'));
     var progressFill = document.getElementById('progressFill');
@@ -154,5 +154,150 @@
     });
 
     setLanguage('fr');
+
+
+    /* ──────────────────────────────────────────────────────────
+       4. MAGIC MENU — Segmented control + staggered content
+       ────────────────────────────────────────────────────────── */
+
+    var overlay     = document.getElementById('focusOverlay');
+    var trigger     = document.getElementById('focusTrigger');
+    var closeBtn    = document.getElementById('magicClose');
+    var tabs        = Array.from(document.querySelectorAll('.magic-tab'));
+    var panels      = Array.from(document.querySelectorAll('.magic-panel'));
+    var bubble      = document.getElementById('magicBubble');
+
+    /** Positionner la bulle derrière l'onglet actif */
+    function positionBubble(tab) {
+        var tabsContainer = tab.parentElement;
+        var containerRect = tabsContainer.getBoundingClientRect();
+        var tabRect       = tab.getBoundingClientRect();
+        var offsetLeft    = tabRect.left - containerRect.left;
+
+        bubble.style.width     = tabRect.width + 'px';
+        bubble.style.transform = 'translateX(' + (offsetLeft - 5) + 'px)';
+    }
+
+    /** Activer un onglet et son panneau associé */
+    function activateTab(tab) {
+        var targetPanel = tab.getAttribute('data-tab');
+
+        /* Mettre à jour les onglets */
+        tabs.forEach(function (t) { t.classList.remove('is-active'); });
+        tab.classList.add('is-active');
+
+        /* Déplacer la bulle */
+        positionBubble(tab);
+
+        /* Changer de panneau avec stagger restart */
+        panels.forEach(function (p) {
+            if (p.getAttribute('data-panel') === targetPanel) {
+                /* Reset les animations stagger */
+                var items = p.querySelectorAll('.stagger-item');
+                items.forEach(function (item) {
+                    item.style.animation = 'none';
+                    void item.offsetWidth; /* reflow */
+                    item.style.animation = '';
+                });
+                p.classList.add('is-active');
+            } else {
+                p.classList.remove('is-active');
+            }
+        });
+    }
+
+    /** Ouvrir l'overlay */
+    function openOverlay() {
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+
+        /* Positionner la bulle après que l'overlay soit visible */
+        requestAnimationFrame(function () {
+            var activeTab = document.querySelector('.magic-tab.is-active');
+            if (activeTab) positionBubble(activeTab);
+
+            /* Relancer les animations stagger du panneau actif */
+            var activePanel = document.querySelector('.magic-panel.is-active');
+            if (activePanel) {
+                var items = activePanel.querySelectorAll('.stagger-item');
+                items.forEach(function (item) {
+                    item.style.animation = 'none';
+                    void item.offsetWidth;
+                    item.style.animation = '';
+                });
+            }
+        });
+    }
+
+    /** Fermer l'overlay */
+    function closeOverlay() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+
+    /* Événements — onglets */
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            activateTab(tab);
+        });
+    });
+
+    /* Événements — ouvrir/fermer */
+    trigger.addEventListener('click', openOverlay);
+    closeBtn.addEventListener('click', closeOverlay);
+
+    /* Fermer avec Escape */
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+            closeOverlay();
+        }
+    });
+
+    /* Fermer en cliquant sur le fond (pas sur le contenu) */
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeOverlay();
+    });
+
+    /* Repositionner la bulle au resize */
+    window.addEventListener('resize', function () {
+        var activeTab = document.querySelector('.magic-tab.is-active');
+        if (activeTab && overlay.classList.contains('is-open')) {
+            positionBubble(activeTab);
+        }
+    });
+
+    /* Re-scanner les éléments i18n (le focus overlay est dans le DOM) */
+    i18nElements = document.querySelectorAll('[data-i18n]');
+
+
+    /* ──────────────────────────────────────────────────────────
+       5. NAVBAR SCROLL — fondu + slide piloté par le scroll
+          Logo part à gauche, langues partent à droite,
+          synchronisé sur la progression du scroll dans le hero.
+       ────────────────────────────────────────────────────────── */
+
+    var nav      = document.querySelector('.hero-nav');
+    var navBrand = document.querySelector('.hero-brand');
+    var navLang  = document.querySelector('.lang-switcher');
+    var heroSect = document.getElementById('hero');
+
+    function updateNav() {
+        var scrollY   = window.scrollY;
+        /* Seuil = 75 % de la hauteur du hero, min 260 px */
+        var threshold = Math.max(heroSect.offsetHeight * 0.75, 260);
+        var t         = Math.min(Math.max(scrollY / threshold, 0), 1);
+
+        /* Ease-in quadratique : disparition s'accélère */
+        var eased = t * t;
+
+        nav.style.opacity        = String(1 - eased);
+        navBrand.style.transform = 'translateX(' + (-eased * 90) + 'px)';
+        navLang.style.transform  = 'translateX(' + ( eased * 90) + 'px)';
+        nav.style.pointerEvents  = t >= 0.97 ? 'none' : '';
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+    window.addEventListener('resize', updateNav, { passive: true });
+    updateNav();
 
 }());

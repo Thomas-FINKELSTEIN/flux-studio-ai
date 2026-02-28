@@ -13,13 +13,17 @@ const translations = {
         /* Navigation */
         navSubtitle:        "Automatisation sur mesure · Les Cluses",
 
-        /* Hero — statut */
-        heroStatus:         "Systèmes actifs — Automatisations en cours",
+        /* Hero — badge */
+        heroBadge:          "Pour professionnels & particuliers",
+
+        /* Hero — statut iPad */
+        heroStatus:         "Systèmes actifs",
 
         /* Hero — titres */
-        heroTitle1:         "L'IA travaille.",
-        heroTitle2:         "Vous développez.",
-        heroSubtitle:       "Solutions d'automatisation sur mesure pour particuliers ou professionnels.",
+        heroTitle1:         "L'IA bosse.",
+        heroTitle2:         "Vous cartonnez.",
+        heroSubtitle:       "Des automatisations intelligentes qui tournent pour vous, 24h/24, sans effort.",
+        scrollHint:         "Voir les solutions",
 
         /* Hero — fenêtre IA : 3 états */
         aiWindowLabel:      "flux-agent · actif",
@@ -82,16 +86,69 @@ const translations = {
         sheetSupplier:      "Fournisseur",
         sheetAmount:        "Montant HT",
         sheetVat:           "TVA",
+
+        /* ── Focus Overlay ── */
+        focusTrigger:       "Explications concrètes avec exemples",
+        focusQuestion:      "Comment pouvons-nous vous aider ?",
+        focusProLabel:      "Solutions Professionnelles",
+        focusPersoLabel:    "Automatisation Personnelle",
+        focusBackBtn:       "Retour",
+        focusProTitle:      "Choisissez votre secteur",
+        tileImmo:           "Immobilier",
+        tileGites:          "Gîtes & Locations",
+        tileEnt:            "Entreprises",
+
+        /* ── Modale Immobilier ── */
+        modalImmoTitle:     "Ne visitez qu'avec des acheteurs qualifiés.",
+        modalImmoP1Label:   "Filtre IA",
+        modalImmoP1Desc:    "Grâce à un formulaire rempli par votre prospect, ses critères sont analysés par l'IA qui vous prépare une fiche de synthèse. Au choix : vous la recevez en validation, ou elle s'intègre automatiquement dans votre CRM.",
+        modalImmoP2Label:   "Estimation",
+        modalImmoP2Desc:    "À la réception d'une demande d'estimation, l'IA extrait les données du bien et génère un pré-rapport sauvegardé en brouillon. À vous de le vérifier d'un clic avant de l'envoyer au vendeur.",
+        modalImmoP3Label:   "Compte-rendu",
+        modalImmoP3Desc:    "Envoyez un simple mémo vocal après votre visite : l'IA rédige un compte-rendu professionnel impeccable. Vous pouvez le relire en brouillon, ou le laisser s'envoyer directement.",
+
+        /* ── Modale Gîtes ── */
+        modalGitesTitle:    "Votre conciergerie en pilote automatique.",
+        modalGitesP1Label:  "Contrats",
+        modalGitesP1Desc:   "Grâce aux informations de réservation, le contrat de location se remplit de lui-même. Vous choisissez : l'envoyer instantanément pour signature électronique, ou le générer en brouillon pour vérification.",
+        modalGitesP2Label:  "Accueil",
+        modalGitesP2Desc:   "Un livret d'accueil est préparé et traduit automatiquement la veille de l'arrivée. L'envoi par WhatsApp peut être 100% automatisé ou nécessiter votre validation finale sur votre téléphone.",
+        modalGitesP3Label:  "Avis",
+        modalGitesP3Desc:   "Le lendemain du départ, un message chaleureux est préparé pour s'assurer de leur satisfaction. Un simple clic de validation de votre part suffit pour l'envoyer et récolter vos avis 5 étoiles.",
+
+        /* ── Modale Entreprises ── */
+        modalEntTitle:      "La fin absolue de la saisie manuelle.",
+        modalEntP1Label:    "Factures",
+        modalEntP1Desc:     "En transférant vos factures PDF à une adresse dédiée, l'IA lit et pré-remplit votre tableau de bord financier. Vous gardez le contrôle total : les lignes restent \"à valider\" jusqu'à votre approbation.",
+        modalEntP2Label:    "Devis",
+        modalEntP2Desc:     "À chaque demande de devis, les informations du client sont extraites et préparées en brouillon dans votre logiciel commercial. Une vérification rapide, et la fiche est validée sans aucune saisie.",
+        modalEntP3Label:    "Notes de frais",
+        modalEntP3Desc:     "Vos employés prennent en photo leurs reçus : l'IA extrait le montant et la TVA. Le remboursement et la saisie comptable attendent simplement votre clic de validation.",
+
+        /* ── Modale Personnel ── */
+        modalPersoTitle:    "Reprenez le contrôle de votre temps libre.",
+        modalPersoP1Label:  "Tri administratif",
+        modalPersoP1Desc:   "Lorsqu'une facture arrive par mail, elle est téléchargée et classée. Vous pouvez configurer le système pour qu'il la place dans un dossier \"À vérifier\", ou qu'il l'archive définitivement.",
+        modalPersoP2Label:  "Assistant quotidien",
+        modalPersoP2Desc:   "En connectant vos agendas, l'IA vous prépare un résumé de votre journée. Vous recevez un brouillon de votre planning chaque matin, pour ne garder que l'essentiel.",
+        modalPersoP3Label:  "Budget",
+        modalPersoP3Desc:   "L'analyse de vos reçus alimente votre tableau de budget en vous proposant des suggestions. L'IA repère les abonnements inutiles et vous demande confirmation avant de les signaler.",
+
+        /* ── Disclaimer ── */
+        magicDisclaimer:    "Ces exemples illustrent quelques automatisations parmi tant d'autres — chaque solution est entièrement personnalisée selon vos outils et vos habitudes.",
     },
 
     /* ──────────────────────────── ENGLISH ──────────────────────────── */
     en: {
         navSubtitle:        "Custom automation · Les Cluses, France",
 
-        heroStatus:         "Systems active — Automations running",
-        heroTitle1:         "AI does the work.",
-        heroTitle2:         "You grow the business.",
-        heroSubtitle:       "Tailor-made automation solutions for individuals and businesses.",
+        heroBadge:          "For businesses & individuals",
+
+        heroStatus:         "Systems active",
+        heroTitle1:         "AI grinds.",
+        heroTitle2:         "You win.",
+        heroSubtitle:       "Smart automations working for you, around the clock, effortlessly.",
+        scrollHint:         "See the solutions",
 
         aiWindowLabel:      "flux-agent · active",
         state1Sector:       "▸ Real Estate",
@@ -147,16 +204,69 @@ const translations = {
         sheetSupplier:      "Supplier",
         sheetAmount:        "Amount ex.VAT",
         sheetVat:           "VAT",
+
+        /* ── Focus Overlay ── */
+        focusTrigger:       "Concrete examples & explanations",
+        focusQuestion:      "How can we help you?",
+        focusProLabel:      "Professional Solutions",
+        focusPersoLabel:    "Personal Automation",
+        focusBackBtn:       "Back",
+        focusProTitle:      "Choose your sector",
+        tileImmo:           "Real Estate",
+        tileGites:          "Vacation Rentals",
+        tileEnt:            "Businesses",
+
+        /* ── Modal: Real Estate ── */
+        modalImmoTitle:     "Only visit with qualified buyers.",
+        modalImmoP1Label:   "AI Filter",
+        modalImmoP1Desc:    "Through a form filled out by your prospect, their criteria are analyzed by AI which prepares a summary sheet. Your choice: receive it for approval, or have it automatically integrated into your CRM.",
+        modalImmoP2Label:   "Appraisal",
+        modalImmoP2Desc:    "Upon receiving an appraisal request, AI extracts property data and generates a pre-report saved as a draft. Just verify it with one click before sending it to the seller.",
+        modalImmoP3Label:   "Visit Report",
+        modalImmoP3Desc:    "Send a simple voice memo after your visit: AI writes a flawless professional report. You can review it as a draft, or let it send automatically.",
+
+        /* ── Modal: Vacation Rentals ── */
+        modalGitesTitle:    "Your concierge service on autopilot.",
+        modalGitesP1Label:  "Contracts",
+        modalGitesP1Desc:   "Using booking information, the rental agreement fills itself out. Your choice: send it instantly for electronic signature, or generate it as a draft for review.",
+        modalGitesP2Label:  "Welcome",
+        modalGitesP2Desc:   "A welcome booklet is prepared and automatically translated the day before arrival. WhatsApp delivery can be 100% automated or require your final approval on your phone.",
+        modalGitesP3Label:  "Reviews",
+        modalGitesP3Desc:   "The day after departure, a warm message is prepared to check on their satisfaction. A single validation click from you is enough to send it and collect your 5-star reviews.",
+
+        /* ── Modal: Businesses ── */
+        modalEntTitle:      "The absolute end of manual data entry.",
+        modalEntP1Label:    "Invoices",
+        modalEntP1Desc:     "By forwarding your PDF invoices to a dedicated address, AI reads and pre-fills your financial dashboard. You keep total control: rows remain \"pending approval\" until you confirm.",
+        modalEntP2Label:    "Quotes",
+        modalEntP2Desc:     "For each quote request, client information is extracted and prepared as a draft in your business software. A quick check, and the record is validated without any typing.",
+        modalEntP3Label:    "Expense Reports",
+        modalEntP3Desc:     "Your employees photograph their receipts: AI extracts the amount and VAT. Reimbursement and accounting entries simply await your validation click.",
+
+        /* ── Modal: Personal ── */
+        modalPersoTitle:    "Take back control of your free time.",
+        modalPersoP1Label:  "Admin Sorting",
+        modalPersoP1Desc:   "When an invoice arrives by email, it's downloaded and filed. You can configure the system to place it in a \"To Review\" folder, or archive it permanently.",
+        modalPersoP2Label:  "Daily Assistant",
+        modalPersoP2Desc:   "By connecting your calendars, AI prepares a summary of your day. You receive a draft of your schedule each morning, keeping only what matters.",
+        modalPersoP3Label:  "Budget",
+        modalPersoP3Desc:   "Analysis of your receipts feeds your budget dashboard with suggestions. AI spots unnecessary subscriptions and asks for confirmation before flagging them.",
+
+        /* ── Disclaimer ── */
+        magicDisclaimer:    "These examples illustrate just a few of the many possible automations — every solution is fully tailored to your tools and habits.",
     },
 
     /* ──────────────────────────── ESPAÑOL ──────────────────────────── */
     es: {
         navSubtitle:        "Automatización a medida · Les Cluses, Francia",
 
-        heroStatus:         "Sistemas activos — Automatizaciones en curso",
-        heroTitle1:         "La IA trabaja.",
-        heroTitle2:         "Tú creces.",
-        heroSubtitle:       "Soluciones de automatización a medida para particulares o profesionales.",
+        heroBadge:          "Para profesionales y particulares",
+
+        heroStatus:         "Sistemas activos",
+        heroTitle1:         "La IA trabaja duro.",
+        heroTitle2:         "Tú triunfas.",
+        heroSubtitle:       "Automatizaciones inteligentes trabajando para ti, las 24h, sin esfuerzo.",
+        scrollHint:         "Ver las soluciones",
 
         aiWindowLabel:      "flux-agent · activo",
         state1Sector:       "▸ Inmobiliaria",
@@ -212,5 +322,55 @@ const translations = {
         sheetSupplier:      "Proveedor",
         sheetAmount:        "Importe s/IVA",
         sheetVat:           "IVA",
+
+        /* ── Focus Overlay ── */
+        focusTrigger:       "Explicaciones concretas con ejemplos",
+        focusQuestion:      "¿Cómo podemos ayudarte?",
+        focusProLabel:      "Soluciones Profesionales",
+        focusPersoLabel:    "Automatización Personal",
+        focusBackBtn:       "Volver",
+        focusProTitle:      "Elige tu sector",
+        tileImmo:           "Inmobiliaria",
+        tileGites:          "Alquileres Vacacionales",
+        tileEnt:            "Empresas",
+
+        /* ── Modal: Inmobiliaria ── */
+        modalImmoTitle:     "Visita solo con compradores cualificados.",
+        modalImmoP1Label:   "Filtro IA",
+        modalImmoP1Desc:    "Gracias a un formulario rellenado por tu prospecto, sus criterios son analizados por la IA que te prepara una ficha resumen. A tu elección: la recibes para validación, o se integra automáticamente en tu CRM.",
+        modalImmoP2Label:   "Tasación",
+        modalImmoP2Desc:    "Al recibir una solicitud de tasación, la IA extrae los datos del inmueble y genera un pre-informe guardado como borrador. Solo tienes que verificarlo con un clic antes de enviarlo al vendedor.",
+        modalImmoP3Label:   "Informe de visita",
+        modalImmoP3Desc:    "Envía un simple memo de voz después de tu visita: la IA redacta un informe profesional impecable. Puedes revisarlo como borrador, o dejarlo enviar directamente.",
+
+        /* ── Modal: Alquileres ── */
+        modalGitesTitle:    "Tu conserjería en piloto automático.",
+        modalGitesP1Label:  "Contratos",
+        modalGitesP1Desc:   "Gracias a la información de reserva, el contrato de alquiler se rellena solo. Tú eliges: enviarlo instantáneamente para firma electrónica, o generarlo como borrador para verificación.",
+        modalGitesP2Label:  "Bienvenida",
+        modalGitesP2Desc:   "Un libro de bienvenida se prepara y traduce automáticamente la víspera de la llegada. El envío por WhatsApp puede ser 100% automatizado o requerir tu validación final en tu teléfono.",
+        modalGitesP3Label:  "Reseñas",
+        modalGitesP3Desc:   "Al día siguiente de la salida, un mensaje cálido se prepara para asegurar su satisfacción. Un simple clic de validación por tu parte basta para enviarlo y recoger tus reseñas de 5 estrellas.",
+
+        /* ── Modal: Empresas ── */
+        modalEntTitle:      "El fin absoluto de la entrada manual de datos.",
+        modalEntP1Label:    "Facturas",
+        modalEntP1Desc:     "Al reenviar tus facturas PDF a una dirección dedicada, la IA lee y pre-rellena tu panel financiero. Mantienes el control total: las líneas permanecen \"pendientes de aprobar\" hasta tu confirmación.",
+        modalEntP2Label:    "Presupuestos",
+        modalEntP2Desc:     "Para cada solicitud de presupuesto, la información del cliente se extrae y prepara como borrador en tu software comercial. Una verificación rápida, y la ficha se valida sin teclear nada.",
+        modalEntP3Label:    "Notas de gastos",
+        modalEntP3Desc:     "Tus empleados fotografían sus recibos: la IA extrae el importe y el IVA. El reembolso y el asiento contable simplemente esperan tu clic de validación.",
+
+        /* ── Modal: Personal ── */
+        modalPersoTitle:    "Recupera el control de tu tiempo libre.",
+        modalPersoP1Label:  "Organización administrativa",
+        modalPersoP1Desc:   "Cuando una factura llega por correo, se descarga y clasifica. Puedes configurar el sistema para que la coloque en una carpeta \"Por revisar\", o la archive definitivamente.",
+        modalPersoP2Label:  "Asistente diario",
+        modalPersoP2Desc:   "Al conectar tus calendarios, la IA te prepara un resumen de tu jornada. Recibes un borrador de tu planning cada mañana, para quedarte solo con lo esencial.",
+        modalPersoP3Label:  "Presupuesto",
+        modalPersoP3Desc:   "El análisis de tus recibos alimenta tu tabla de presupuesto con sugerencias. La IA detecta suscripciones innecesarias y te pide confirmación antes de señalarlas.",
+
+        /* ── Disclaimer ── */
+        magicDisclaimer:    "Estos ejemplos ilustran solo algunas de las muchas automatizaciones posibles — cada solución se adapta por completo a tus herramientas y hábitos.",
     },
 };
