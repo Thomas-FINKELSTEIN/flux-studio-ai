@@ -72,8 +72,8 @@
           de se jouer complètement avant le prochain état.
        ────────────────────────────────────────────────────────── */
 
-    var DISPLAY_MS  = 3000;
-    var PROGRESS_MS = 2500;
+    var DISPLAY_MS  = 5000;
+    var PROGRESS_MS = 4500;
 
     var states       = Array.from(document.querySelectorAll('#aiStates .ai-state'));
     var progressFill = document.getElementById('progressFill');
@@ -123,13 +123,11 @@
     var currentLang  = 'fr';
     var langButtons  = document.querySelectorAll('[data-lang]');
     var i18nElements = document.querySelectorAll('[data-i18n]');
+    var langReady    = false; /* skip animation on first call */
 
-    function setLanguage(lang) {
-        if (!translations[lang]) return;
+    var i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
 
-        currentLang = lang;
-        document.documentElement.lang = lang;
-
+    function applyTranslations(lang) {
         i18nElements.forEach(function (el) {
             var key  = el.getAttribute('data-i18n');
             var text = translations[lang][key];
@@ -141,10 +139,49 @@
                 }
             }
         });
+        /* Placeholders traduits (inputs) */
+        i18nPlaceholders.forEach(function (el) {
+            var phKey = el.getAttribute('data-i18n-placeholder');
+            if (phKey && translations[lang][phKey]) {
+                el.setAttribute('placeholder', translations[lang][phKey]);
+            }
+        });
+    }
+
+    function setLanguage(lang) {
+        if (!translations[lang]) return;
+        if (lang === currentLang && langReady) return;
+
+        currentLang = lang;
+        document.documentElement.lang = lang;
 
         langButtons.forEach(function (btn) {
             btn.classList.toggle('is-active', btn.getAttribute('data-lang') === lang);
         });
+
+        if (!langReady) {
+            /* First call: apply immediately, no animation */
+            applyTranslations(lang);
+            langReady = true;
+            return;
+        }
+
+        /* Animated transition: fade out → swap → staggered fade in */
+        var els = Array.from(i18nElements);
+        els.forEach(function (el) {
+            el.classList.add('i18n-out');
+        });
+
+        setTimeout(function () {
+            applyTranslations(lang);
+
+            /* Staggered fade-in for a progressive wave effect */
+            els.forEach(function (el, i) {
+                setTimeout(function () {
+                    el.classList.remove('i18n-out');
+                }, i * 12);
+            });
+        }, 300);
     }
 
     langButtons.forEach(function (btn) {
@@ -266,8 +303,150 @@
         }
     });
 
-    /* Re-scanner les éléments i18n (le focus overlay est dans le DOM) */
-    i18nElements = document.querySelectorAll('[data-i18n]');
+    /* ──────────────────────────────────────────────────────────
+       4b. CONTACT OVERLAY — Low Friction Form + Formspree
+       ────────────────────────────────────────────────────────── */
+
+    var contactOverlay  = document.getElementById('contactOverlay');
+    var contactClose    = document.getElementById('contactClose');
+    var ctaTrigger      = document.getElementById('ctaTrigger');
+    var contactForm     = document.getElementById('contact-form');
+    var contactSuccess  = document.getElementById('contactSuccess');
+    var intentionInput  = document.getElementById('intentionInput');
+    var intentCards     = Array.from(document.querySelectorAll('.contact-intent-card'));
+    var methodBtns      = Array.from(document.querySelectorAll('.contact-method-btn'));
+    var phoneField      = document.getElementById('contactPhone');
+    var emailField      = document.getElementById('contactEmail');
+
+    /** Ouvrir la modale contact */
+    function openContact() {
+        contactOverlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    /** Fermer la modale contact */
+    function closeContact() {
+        contactOverlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+
+    /** Réinitialiser le formulaire */
+    function resetContactForm() {
+        contactForm.reset();
+        contactForm.classList.remove('is-hiding');
+        contactForm.style.display = '';
+        contactSuccess.classList.remove('is-visible');
+        intentionInput.value = '';
+        intentCards.forEach(function (c) {
+            c.classList.remove('is-selected', 'is-dimmed');
+        });
+        /* Reset méthode de contact au téléphone */
+        methodBtns.forEach(function (b) {
+            b.classList.toggle('is-active', b.getAttribute('data-method') === 'phone');
+        });
+        phoneField.classList.add('is-visible');
+        emailField.classList.remove('is-visible');
+        phoneField.removeAttribute('required');
+        emailField.removeAttribute('required');
+    }
+
+    /* Événements ouvrir/fermer */
+    ctaTrigger.addEventListener('click', openContact);
+    contactClose.addEventListener('click', function () {
+        closeContact();
+        setTimeout(resetContactForm, 500);
+    });
+
+    contactOverlay.addEventListener('click', function (e) {
+        if (e.target === contactOverlay) {
+            closeContact();
+            setTimeout(resetContactForm, 500);
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && contactOverlay.classList.contains('is-open')) {
+            closeContact();
+            setTimeout(resetContactForm, 500);
+        }
+    });
+
+    /* ── Étape 2 : Sélection intention ── */
+    intentCards.forEach(function (card) {
+        card.addEventListener('click', function () {
+            var value = card.getAttribute('data-intent');
+            intentionInput.value = value;
+
+            intentCards.forEach(function (c) {
+                if (c === card) {
+                    c.classList.add('is-selected');
+                    c.classList.remove('is-dimmed');
+                } else {
+                    c.classList.remove('is-selected');
+                    c.classList.add('is-dimmed');
+                }
+            });
+        });
+    });
+
+    /* ── Étape 3 : Toggle Téléphone / Mail ── */
+    methodBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var method = btn.getAttribute('data-method');
+
+            methodBtns.forEach(function (b) {
+                b.classList.toggle('is-active', b === btn);
+            });
+
+            if (method === 'phone') {
+                phoneField.classList.add('is-visible');
+                emailField.classList.remove('is-visible');
+                emailField.removeAttribute('required');
+                emailField.value = '';
+            } else {
+                emailField.classList.add('is-visible');
+                phoneField.classList.remove('is-visible');
+                phoneField.removeAttribute('required');
+                phoneField.value = '';
+            }
+        });
+    });
+
+    /* ── Envoi AJAX → Formspree ── */
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var submitBtn = document.getElementById('contactSubmit');
+        submitBtn.disabled = true;
+
+        var formData = new FormData(contactForm);
+
+        fetch('https://formspree.io/f/mlgwvkrn', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(function (response) {
+            if (response.ok) {
+                /* Success : masquer le form, afficher le message */
+                contactForm.classList.add('is-hiding');
+                setTimeout(function () {
+                    contactForm.style.display = 'none';
+                    contactSuccess.classList.add('is-visible');
+                }, 380);
+            } else {
+                throw new Error('Erreur réseau');
+            }
+        })
+        .catch(function () {
+            submitBtn.disabled = false;
+            alert('Une erreur est survenue. Veuillez réessayer.');
+        });
+    });
+
+    /* Re-scanner les éléments i18n (tous les overlays sont dans le DOM) */
+    i18nElements     = document.querySelectorAll('[data-i18n]');
+    i18nPlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
 
 
     /* ──────────────────────────────────────────────────────────
@@ -299,5 +478,64 @@
     window.addEventListener('scroll', updateNav, { passive: true });
     window.addEventListener('resize', updateNav, { passive: true });
     updateNav();
+
+
+    /* ──────────────────────────────────────────────────────────
+       6. SCROLL REVEAL — IntersectionObserver pour animations au scroll
+       ────────────────────────────────────────────────────────── */
+
+    var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    /* Bento cards */
+    document.querySelectorAll('.animate-bento').forEach(function (el) {
+        revealObserver.observe(el);
+    });
+
+    /* Section titles */
+    var sectionTitle = document.querySelector('#services .text-center.mb-16 h2');
+    var sectionSub   = document.querySelector('#services .text-center.mb-16 p');
+    if (sectionTitle) {
+        sectionTitle.classList.add('section-title-reveal');
+        revealObserver.observe(sectionTitle);
+    }
+    if (sectionSub) {
+        sectionSub.classList.add('section-subtitle-reveal');
+        revealObserver.observe(sectionSub);
+    }
+
+    /* Tech tags container */
+    var techTags = document.querySelector('#services .flex.flex-wrap.gap-2\\.5');
+    if (techTags) {
+        techTags.classList.add('tech-tags-reveal');
+        revealObserver.observe(techTags);
+    }
+
+    /* CTA section */
+    var ctaSection = document.querySelector('#services .text-center.mt-0');
+    if (ctaSection) {
+        ctaSection.classList.add('scroll-reveal');
+        revealObserver.observe(ctaSection);
+    }
+
+    /* Footer */
+    var footer = document.querySelector('footer');
+    if (footer) {
+        footer.classList.add('scroll-reveal');
+        revealObserver.observe(footer);
+    }
+
+    /* Focus trigger button */
+    var focusTriggerWrap = document.querySelector('.text-center.mt-20.mb-24');
+    if (focusTriggerWrap) {
+        focusTriggerWrap.classList.add('scroll-reveal');
+        revealObserver.observe(focusTriggerWrap);
+    }
 
 }());

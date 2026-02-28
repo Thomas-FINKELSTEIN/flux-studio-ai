@@ -67,15 +67,25 @@ const translations = {
         footerSiret:        "SIRET : 101 660 249 00018  ·  Code APE : 62.01Z",
         footerAddress:      "Siège social : Les Cluses (66480), France",
 
-        /* ── iPad — État 1 : Chat ── */
-        chatOnline:         "● En ligne",
-        chatReply:          "Merci, je prépare la visite.",
+        /* ── iPad — État 1 : Rapport Estimation ── */
+        reportNotif:        "Rapport d'Estimation IA",
+        reportSynthTitle:   "Synthèse",
+        reportSurface:      "Surface habitable",
+        reportCondition:    "État général",
+        reportAssets:       "Atouts",
+        reportDpe:          "⚠ DPE",
+        reportEstTitle:     "Estimation",
+        reportAdvised:      "prix de présentation conseillé",
+        reportNet:          "net vendeur estimé",
+        reportRent:         "loyer potentiel HC",
 
         /* ── iPad — État 2 : Contrat ── */
         contractTitle:      "Contrat de Location",
         gitesLabel:         "Gîtes & Location",
         fieldTenant:        "Locataire",
+        fieldAddress:       "Adresse",
         fieldDates:         "Période",
+        fieldGuests:        "Occupants",
         fieldAmount:        "Montant",
         sigLabel:           "Signature",
         state2Badge:        "✓ Caution bloquée",
@@ -136,6 +146,23 @@ const translations = {
 
         /* ── Disclaimer ── */
         magicDisclaimer:    "Ces exemples illustrent quelques automatisations parmi tant d'autres — chaque solution est entièrement personnalisée selon vos outils et vos habitudes.",
+
+        /* ── Modale Contact ── */
+        contactFormTitle:       "Parlons de votre projet.",
+        contactFormSubtitle:    "Aucune information personnelle requise — juste l'essentiel.",
+        contactStep1Label:      "Votre activité",
+        contactStep1Placeholder:"Immobilier, Artisan, Gîtes...",
+        contactStep2Label:      "Votre besoin",
+        contactIntentPrecise:   "J'ai une idée précise",
+        contactIntentTime:      "Je veux gagner du temps",
+        contactStep3Label:      "Comment vous joindre ?",
+        contactMethodPhone:     "Téléphone",
+        contactMethodEmail:     "Mail",
+        contactPhonePlaceholder:"Votre numéro",
+        contactEmailPlaceholder:"Votre adresse e-mail",
+        contactSubmitBtn:       "Envoyer la demande",
+        contactSuccessTitle:    "Merci !",
+        contactSuccessText:     "Votre demande a bien été transmise. Je vous recontacte très vite.",
     },
 
     /* ──────────────────────────── ENGLISH ──────────────────────────── */
@@ -185,15 +212,25 @@ const translations = {
         footerSiret:        "SIRET: 101 660 249 00018  ·  APE Code: 62.01Z",
         footerAddress:      "Headquarters: Les Cluses (66480), France",
 
-        /* ── iPad — State 1 : Chat ── */
-        chatOnline:         "● Online",
-        chatReply:          "Thanks, I'll prepare the visit.",
+        /* ── iPad — State 1 : Estimation Report ── */
+        reportNotif:        "AI Estimation Report",
+        reportSynthTitle:   "Summary",
+        reportSurface:      "Living area",
+        reportCondition:    "Condition",
+        reportAssets:       "Key features",
+        reportDpe:          "⚠ EPC",
+        reportEstTitle:     "Valuation",
+        reportAdvised:      "recommended listing price",
+        reportNet:          "estimated net to seller",
+        reportRent:         "potential rent excl. charges",
 
         /* ── iPad — State 2 : Contract ── */
         contractTitle:      "Rental Agreement",
         gitesLabel:         "Vacation Rentals",
         fieldTenant:        "Tenant",
+        fieldAddress:       "Address",
         fieldDates:         "Period",
+        fieldGuests:        "Guests",
         fieldAmount:        "Amount",
         sigLabel:           "Signature",
         state2Badge:        "✓ Deposit secured",
@@ -254,6 +291,23 @@ const translations = {
 
         /* ── Disclaimer ── */
         magicDisclaimer:    "These examples illustrate just a few of the many possible automations — every solution is fully tailored to your tools and habits.",
+
+        /* ── Contact Modal ── */
+        contactFormTitle:       "Let's talk about your project.",
+        contactFormSubtitle:    "No personal info required — just the essentials.",
+        contactStep1Label:      "Your activity",
+        contactStep1Placeholder:"Real Estate, Craftsman, Rentals...",
+        contactStep2Label:      "Your need",
+        contactIntentPrecise:   "I have a clear idea",
+        contactIntentTime:      "I want to save time",
+        contactStep3Label:      "How to reach you?",
+        contactMethodPhone:     "Phone",
+        contactMethodEmail:     "Email",
+        contactPhonePlaceholder:"Your phone number",
+        contactEmailPlaceholder:"Your email address",
+        contactSubmitBtn:       "Send request",
+        contactSuccessTitle:    "Thank you!",
+        contactSuccessText:     "Your request has been sent. I'll get back to you very soon.",
     },
 
     /* ──────────────────────────── ESPAÑOL ──────────────────────────── */
@@ -303,15 +357,25 @@ const translations = {
         footerSiret:        "SIRET: 101 660 249 00018  ·  Código APE: 62.01Z",
         footerAddress:      "Sede social: Les Cluses (66480), Francia",
 
-        /* ── iPad — Estado 1 : Chat ── */
-        chatOnline:         "● En línea",
-        chatReply:          "Gracias, preparo la visita.",
+        /* ── iPad — Estado 1 : Informe Estimación ── */
+        reportNotif:        "Informe de Estimación IA",
+        reportSynthTitle:   "Síntesis",
+        reportSurface:      "Superficie",
+        reportCondition:    "Estado general",
+        reportAssets:       "Ventajas",
+        reportDpe:          "⚠ CEE",
+        reportEstTitle:     "Estimación",
+        reportAdvised:      "precio de presentación aconsejado",
+        reportNet:          "neto vendedor estimado",
+        reportRent:         "alquiler potencial s/gastos",
 
         /* ── iPad — Estado 2 : Contrato ── */
         contractTitle:      "Contrato de Alquiler",
         gitesLabel:         "Alquileres Vacacionales",
         fieldTenant:        "Arrendatario",
+        fieldAddress:       "Dirección",
         fieldDates:         "Período",
+        fieldGuests:        "Ocupantes",
         fieldAmount:        "Importe",
         sigLabel:           "Firma",
         state2Badge:        "✓ Fianza bloqueada",
@@ -372,5 +436,22 @@ const translations = {
 
         /* ── Disclaimer ── */
         magicDisclaimer:    "Estos ejemplos ilustran solo algunas de las muchas automatizaciones posibles — cada solución se adapta por completo a tus herramientas y hábitos.",
+
+        /* ── Modal de Contacto ── */
+        contactFormTitle:       "Hablemos de tu proyecto.",
+        contactFormSubtitle:    "Sin datos personales — solo lo esencial.",
+        contactStep1Label:      "Tu actividad",
+        contactStep1Placeholder:"Inmobiliaria, Artesano, Alquileres...",
+        contactStep2Label:      "Tu necesidad",
+        contactIntentPrecise:   "Tengo una idea clara",
+        contactIntentTime:      "Quiero ahorrar tiempo",
+        contactStep3Label:      "¿Cómo contactarte?",
+        contactMethodPhone:     "Teléfono",
+        contactMethodEmail:     "Correo",
+        contactPhonePlaceholder:"Tu número de teléfono",
+        contactEmailPlaceholder:"Tu correo electrónico",
+        contactSubmitBtn:       "Enviar solicitud",
+        contactSuccessTitle:    "¡Gracias!",
+        contactSuccessText:     "Tu solicitud ha sido enviada. Te contactaré muy pronto.",
     },
 };

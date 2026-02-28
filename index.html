@@ -28,7 +28,9 @@
         <!-- ── Navbar fixée : logo gauche + langue droite ── -->
         <nav class="hero-nav">
             <div class="hero-brand">
-                <img src="assets/img/logo.jpg" alt="Icône Flux Studio AI" class="hero-brand-icon">
+                <div class="hero-brand-icon-wrap">
+                    <img src="assets/img/logo.jpg" alt="Icône Flux Studio AI" class="hero-brand-icon">
+                </div>
                 <div class="hero-brand-wordmark">
                     <span class="hero-brand-flux">Flux Studio</span>
                     <span class="hero-brand-ai">AI</span>
@@ -50,7 +52,7 @@
 
                 <!-- Titre -->
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.08] mb-5">
-                    <span data-i18n="heroTitle1">L'IA bosse.</span><br>
+                    <span class="hero-shimmer" data-i18n="heroTitle1">L'IA bosse.</span><br>
                     <span class="font-light text-[#5eead4]" data-i18n="heroTitle2">Vous cartonnez.</span>
                 </h1>
 
@@ -106,46 +108,61 @@
                             <div class="ai-states-wrap" id="aiStates">
 
                                 <!-- ╔══════════════════════════════╗
-                                     ║  ÉTAT 1 — Chat iMessage      ║
+                                     ║  ÉTAT 1 — Rapport Estimation ║
                                      ║  Immobilier                  ║
                                      ╚══════════════════════════════╝ -->
                                 <div class="ai-state is-active" data-color="#14b8a6">
-                                    <div class="chat-wrap">
+                                    <div class="report-wrap">
 
-                                        <!-- Barre contact -->
-                                        <div class="chat-bar">
-                                            <div class="chat-avatar">M</div>
-                                            <div class="chat-info">
-                                                <p class="chat-name">Marc Dupont</p>
-                                                <p class="chat-online" data-i18n="chatOnline">● En ligne</p>
-                                            </div>
+                                        <!-- Notification -->
+                                        <div class="report-notif">
+                                            <span>📱</span>
+                                            <span data-i18n="reportNotif">Rapport d'Estimation IA</span>
                                             <span class="chat-sector-badge" data-i18n="cardImmoBadge">Immobilier</span>
                                         </div>
 
-                                        <!-- Messages -->
-                                        <div class="chat-messages">
-
-                                            <!-- Typing indicator (3 points) -->
-                                            <div class="typing-bubble" aria-hidden="true">
-                                                <span class="dot"></span>
-                                                <span class="dot"></span>
-                                                <span class="dot"></span>
-                                            </div>
-
-                                            <!-- Message entrant (IA) -->
-                                            <div class="msg-bubble msg-in">
-                                                <strong data-i18n="state1Line1">Résumé Prospect :</strong><br>
-                                                <span data-i18n="state1Line2">Budget 450k€ validé.</span>
-                                                <span style="color:var(--color-immo);"> ✓</span><br>
-                                                <span data-i18n="state1Line3">Critère :</span> <strong data-i18n="state1Line4">Cuisine ouverte.</strong>
-                                            </div>
-
-                                            <!-- Réponse sortante (utilisateur) -->
-                                            <div class="msg-bubble msg-out">
-                                                <span data-i18n="chatReply">Merci, je prépare la visite.</span>
-                                            </div>
-
+                                        <!-- Propriété -->
+                                        <div class="report-card report-card-1">
+                                            <p class="report-prop-title">Appartement T3 — Rés. Les Glycines</p>
+                                            <p class="report-prop-owner">Propriétaire : M. Dupont</p>
                                         </div>
+
+                                        <!-- Caractéristiques -->
+                                        <div class="report-card report-card-2">
+                                            <p class="report-heading">📊 <span data-i18n="reportSynthTitle">Synthèse</span></p>
+                                            <div class="report-row">
+                                                <span data-i18n="reportSurface">Surface habitable</span>
+                                                <span class="report-val">68 m²</span>
+                                            </div>
+                                            <div class="report-row">
+                                                <span data-i18n="reportCondition">État général</span>
+                                                <span class="report-val report-val-green">Excellent ✓</span>
+                                            </div>
+                                            <div class="report-row">
+                                                <span data-i18n="reportAssets">Atouts</span>
+                                                <span class="report-val">Étage élevé · Clim · Garage</span>
+                                            </div>
+                                            <div class="report-row report-row-warn">
+                                                <span data-i18n="reportDpe">⚠ DPE</span>
+                                                <span class="report-val">Prévision C</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Estimation -->
+                                        <div class="report-card report-card-3">
+                                            <p class="report-heading">💰 <span data-i18n="reportEstTitle">Estimation</span> <span class="report-conf">94%</span></p>
+                                            <div class="report-price-big">245 000 €</div>
+                                            <p class="report-price-sub" data-i18n="reportAdvised">prix de présentation conseillé</p>
+                                            <div class="report-price-line">
+                                                <span>238 000 €</span>
+                                                <span data-i18n="reportNet">net vendeur estimé</span>
+                                            </div>
+                                            <div class="report-price-line">
+                                                <span>950 €/mois</span>
+                                                <span data-i18n="reportRent">loyer potentiel HC</span>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -170,8 +187,16 @@
                                                 <span class="field-value">Marie Dupont</span>
                                             </div>
                                             <div class="field-row">
+                                                <span class="field-label" data-i18n="fieldAddress">Adresse</span>
+                                                <span class="field-value">12 rue des Oliviers</span>
+                                            </div>
+                                            <div class="field-row">
                                                 <span class="field-label" data-i18n="fieldDates">Période</span>
                                                 <span class="field-value">12/07 → 19/07</span>
+                                            </div>
+                                            <div class="field-row">
+                                                <span class="field-label" data-i18n="fieldGuests">Occupants</span>
+                                                <span class="field-value">4 personnes</span>
                                             </div>
                                             <div class="field-row">
                                                 <span class="field-label" data-i18n="fieldAmount">Montant</span>
@@ -227,12 +252,30 @@
                                                         <td>89,00 €</td>
                                                         <td>17,80 €</td>
                                                     </tr>
-                                                    <!-- Nouvelle ligne extraite par l'IA -->
+                                                    <!-- Lignes extraites par l'IA -->
                                                     <tr class="sheet-row-new">
                                                         <td class="cell-d1">15/01/25</td>
                                                         <td class="cell-d2">Orange</td>
                                                         <td class="cell-d3">142,50 €</td>
                                                         <td class="cell-d4">28,50 €</td>
+                                                    </tr>
+                                                    <tr class="sheet-row-new">
+                                                        <td class="cell-e1">18/01/25</td>
+                                                        <td class="cell-e2">SFR</td>
+                                                        <td class="cell-e3">45,00 €</td>
+                                                        <td class="cell-e4">9,00 €</td>
+                                                    </tr>
+                                                    <tr class="sheet-row-new">
+                                                        <td class="cell-f1">22/01/25</td>
+                                                        <td class="cell-f2">Amazon</td>
+                                                        <td class="cell-f3">234,16 €</td>
+                                                        <td class="cell-f4">46,83 €</td>
+                                                    </tr>
+                                                    <tr class="sheet-row-new">
+                                                        <td class="cell-g1">25/01/25</td>
+                                                        <td class="cell-g2">Engie</td>
+                                                        <td class="cell-g3">67,80 €</td>
+                                                        <td class="cell-g4">13,56 €</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -287,7 +330,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
             <!-- ── Carte 1 : Bénéfice majeur (2/3) ── -->
-            <div class="card col-span-1 md:col-span-2 p-10 flex flex-col justify-between" style="min-height:320px;">
+            <div class="card animate-bento delay-100 col-span-1 md:col-span-2 p-10 flex flex-col justify-between" style="min-height:320px;">
                 <div>
                     <span class="badge text-[var(--color-accent)]" style="background:var(--color-accent-light);" data-i18n="card1Badge">Bénéfice</span>
                     <h3 class="text-2xl md:text-3xl font-bold tracking-tight leading-snug mt-5" data-i18n="card1Title">
@@ -300,7 +343,7 @@
             </div>
 
             <!-- ── Carte 2 : Fiabilité (1/3 sombre) ── -->
-            <div class="card card-dark p-10 flex flex-col justify-between" style="min-height:320px;">
+            <div class="card card-dark animate-bento delay-200 p-10 flex flex-col justify-between" style="min-height:320px;">
                 <!-- Grand ✓ décoratif -->
                 <div class="text-6xl font-bold select-none leading-none" style="color:var(--color-accent);" aria-hidden="true">✓</div>
                 <div>
@@ -314,7 +357,7 @@
             </div>
 
             <!-- ── Carte 3 : Intégration (pleine largeur) ── -->
-            <div class="card col-span-1 md:col-span-3 p-10" style="background:#f7f7f9;">
+            <div class="card animate-bento delay-300 col-span-1 md:col-span-3 p-10" style="background:#f7f7f9;">
                 <!-- Texte -->
                 <div class="max-w-2xl mb-8">
                     <span class="badge" style="color:var(--color-finance); background:rgba(139,92,246,0.10);" data-i18n="card3Badge">Intégration</span>
@@ -348,23 +391,23 @@
         <div class="text-center mt-20 mb-24">
             <button class="focus-trigger" id="focusTrigger">
                 <span data-i18n="focusTrigger">Explications concrètes avec exemples</span>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2 7h10M12 7L8.5 3.5M12 7L8.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
         </div>
 
-        <!-- CTA noir -->
+        <!-- CTA noir — ouvre la modale contact -->
         <div class="text-center mt-0">
             <p class="text-[var(--color-text-muted)] font-light text-sm mb-7" data-i18n="ctaLabel">
                 Prêt à libérer votre temps ?
             </p>
-            <a href="mailto:contact@fluxstudio.ai" class="btn-primary">
+            <button class="btn-primary" id="ctaTrigger">
                 <span data-i18n="ctaButton">Parlons de votre projet</span>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                     <path d="M2 7h10M12 7L8.5 3.5M12 7L8.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-            </a>
+            </button>
         </div>
 
     </main>
@@ -567,6 +610,107 @@
         </div>
     </div>
     <!-- Fin Focus Overlay -->
+
+
+    <!-- ================================================================
+         CONTACT OVERLAY — Low Friction Form → Formspree
+         ================================================================ -->
+    <div class="contact-overlay" id="contactOverlay">
+
+        <!-- Bouton Fermer -->
+        <button class="magic-close" id="contactClose" aria-label="Fermer">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+
+        <div class="contact-container">
+
+            <!-- ── FORMULAIRE ── -->
+            <form id="contact-form" autocomplete="off">
+
+                <!-- Titre -->
+                <h2 class="contact-title" data-i18n="contactFormTitle">Parlons de votre projet.</h2>
+                <p class="contact-subtitle" data-i18n="contactFormSubtitle">Aucune information personnelle requise — juste l'essentiel.</p>
+
+                <!-- ÉTAPE 1 : Activité -->
+                <div class="contact-step">
+                    <label class="contact-label" data-i18n="contactStep1Label">Votre activité</label>
+                    <input
+                        type="text"
+                        name="activite"
+                        class="contact-input"
+                        required
+                        placeholder="Immobilier, Artisan, Gîtes..."
+                        data-i18n-placeholder="contactStep1Placeholder"
+                    >
+                </div>
+
+                <!-- ÉTAPE 2 : Intention -->
+                <div class="contact-step">
+                    <label class="contact-label" data-i18n="contactStep2Label">Votre besoin</label>
+                    <div class="contact-intentions">
+                        <button type="button" class="contact-intent-card" data-intent="precise">
+                            <span class="contact-intent-icon">🎯</span>
+                            <span class="contact-intent-text" data-i18n="contactIntentPrecise">J'ai une idée précise</span>
+                        </button>
+                        <button type="button" class="contact-intent-card" data-intent="gagner-temps">
+                            <span class="contact-intent-icon">⚡</span>
+                            <span class="contact-intent-text" data-i18n="contactIntentTime">Je veux gagner du temps</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="intention" id="intentionInput">
+                </div>
+
+                <!-- ÉTAPE 3 : Contact -->
+                <div class="contact-step">
+                    <label class="contact-label" data-i18n="contactStep3Label">Comment vous joindre ?</label>
+                    <div class="contact-method-tabs">
+                        <button type="button" class="contact-method-btn is-active" data-method="phone">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <span data-i18n="contactMethodPhone">Téléphone</span>
+                        </button>
+                        <button type="button" class="contact-method-btn" data-method="email">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M22 7l-10 6L2 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <span data-i18n="contactMethodEmail">Mail</span>
+                        </button>
+                    </div>
+                    <div class="contact-field-wrap">
+                        <input
+                            type="tel"
+                            name="telephone"
+                            id="contactPhone"
+                            class="contact-input contact-dynamic-field is-visible"
+                            placeholder="Votre numéro"
+                            data-i18n-placeholder="contactPhonePlaceholder"
+                        >
+                        <input
+                            type="email"
+                            name="email"
+                            id="contactEmail"
+                            class="contact-input contact-dynamic-field"
+                            placeholder="Votre adresse e-mail"
+                            data-i18n-placeholder="contactEmailPlaceholder"
+                        >
+                    </div>
+                </div>
+
+                <!-- Bouton Submit -->
+                <button type="submit" class="contact-submit" id="contactSubmit">
+                    <span data-i18n="contactSubmitBtn">Envoyer la demande</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M19 12l-5-5M19 12l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+
+            </form>
+
+            <!-- ── SUCCESS STATE ── -->
+            <div class="contact-success" id="contactSuccess">
+                <div class="contact-success-icon">✓</div>
+                <h3 class="contact-success-title" data-i18n="contactSuccessTitle">Merci !</h3>
+                <p class="contact-success-text" data-i18n="contactSuccessText">Votre demande a bien été transmise. Je vous recontacte très vite.</p>
+            </div>
+
+        </div>
+    </div>
+    <!-- Fin Contact Overlay -->
 
 
     <!-- Scripts -->
